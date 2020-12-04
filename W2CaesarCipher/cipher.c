@@ -4,13 +4,13 @@
 #include <unistd.h>
 #include <ctype.h>
 #define MAX_NAME_SZ 256
-int cpr(char *text, int num);
+int cpr(int num);
 
 char *plain;
 int main( int argc, char *argv[] )
 {
 
-    printf("The Application %s is waiting for your command \n", argv[0]);
+    printf("ROME AND THE SENATE AT YOUR SERVICE CAESAR!  \n");
     sleep(1);
     
     // initializing the variable
@@ -52,7 +52,7 @@ int main( int argc, char *argv[] )
             // assigned key is greater than 26, thus, rotating it and reassigining to key value so there is no overflow in the ascii table.
             else if(key > 26)
             {
-                key = key %26;
+                key %= 26;
                 key = atoi(argv[1]);
             }
             else{
@@ -66,39 +66,52 @@ int main( int argc, char *argv[] )
             EXIT_FAILURE;
         }
     }
- 
-    printf("Ceasar! Caesar! I need the plaintex to cipher against the barbarian Germens!\n");
-    sleep(2);
-    printf("What is the top secret information you want to be encrypted?\n");
-    printf("\n");
-    printf("=>");
-    fgets(plain, MAX_NAME_SZ,stdin);
-    printf("I will cipher the following text %s\n",plain);
-        
- 
-    cpr(plain,key);
 
-    
-
-
+printf("Ceasar! Caesar! I need the plaintex to cipher against the barbarian Germens!\n");
+sleep(2);
+printf("What is the top secret information you want to be encrypted?\n");
+printf("\n");
+printf("=>");
+fgets(plain, MAX_NAME_SZ,stdin);
+printf("I will cipher the following text: %s\n",plain);
+cpr(key);
 
 free(plain);
+
 return EXIT_SUCCESS;
+
 }
 
-int cpr(char *text, int num)
+int cpr(int num)
 {
     char *output;
     output = (char *) malloc(256);
-
-    strcpy(output,text);
-    for(size_t i=0; i<strlen(output); i++)
-    {
-        output[i]=output[i+num];
+    if(output==NULL){
+        printf("not enough memory");
+        free(output);
+        return EXIT_FAILURE;
     }
 
-    printf(" The Ciphered Text is the Following. Read it and burn the paper!\n");
-    sleep(2);
+    strcpy(output,plain);
+
+  for(int i=0; i<strlen(output);i++){
+      if(isalpha(plain[i]))
+      {
+          char outputchar = plain[i] +num;
+          if(!isalpha(outputchar))
+          {
+              outputchar-=26;
+          }
+          output[i]=outputchar;
+      }
+      else{
+          output[i]=plain[i];
+      }
+  }
+
+
+    printf(" CAESAR : The Ciphered Text is the Following. Read it and burn the paper!\n");
+    sleep(1);
     printf("%s\n",output);
     free(output);
     return EXIT_SUCCESS;
