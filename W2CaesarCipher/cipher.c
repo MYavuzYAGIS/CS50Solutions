@@ -3,25 +3,41 @@
 #include<stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
+#define MAX_NAME_SZ 256
+
 
 int main( int argc, char *argv[] )
 {
 
     printf("The Application %s is waiting for your command \n", argv[0]);
     sleep(1);
+    
+    
+    char *plain;
+    // initializing the variable
+    plain= (char *) malloc(256);
+    if(plain==NULL){
+        printf("No Memory");
+        return EXIT_FAILURE;
+    }
     int key;
+    
     // Argument Filtering. Now It accepts only positive integers
     if(argc<2)
     {
       printf("Too few positional arguments\n");
       printf("Usage: ./caesar key \n");
+      free(plain);
       return EXIT_FAILURE;
+      
     }
     else if( argc > 2 ) 
     {
       printf("Too many positional arguments\n");
       printf("Usage: ./caesar key \n");
+      free(plain);
       return EXIT_FAILURE;
+      
     }
     else if (argc ==2)
     {
@@ -31,7 +47,7 @@ int main( int argc, char *argv[] )
             // Controlling whether the key is greater than or equal to 26. It will return the remainder as real key value
             // the best condition, the value is between 1 and 26
             if(key>0 && key <=26){
-                printf("key is %d\n",key);
+                printf("key is Secured!\n");
                 key = atoi(argv[1]);
 
             }
@@ -43,6 +59,7 @@ int main( int argc, char *argv[] )
             }
             else{
                 printf("Key cannot be a negative integer or 0. Given parameter is %d\n",key);
+                free(plain);
                 return EXIT_FAILURE;
             }
             
@@ -52,8 +69,20 @@ int main( int argc, char *argv[] )
         }
     }
  
+        printf("Ceasar! Caesar! I need the plaintex to cipher against the barbarian Germens!\n");
+        sleep(2);
+        printf("What is the top secret information you want to be encrypted?\n");
+        printf("\n");
+        printf("=>");
+        fgets(plain, MAX_NAME_SZ,stdin);
+        printf("I will cipher the following text %s\n",plain);
+        
+        
 
-    
 
+
+
+free(plain);
+return EXIT_SUCCESS;
 }
 
