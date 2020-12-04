@@ -1,25 +1,4 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include <unistd.h>
-#include <ctype.h>
-#define MAX_NAME_SZ 256
-int cpr(char *text, int num);
-
-char *plain;
-int main( int argc, char *argv[] )
-{
-
-    printf("The Application %s is waiting for your command \n", argv[0]);
-    sleep(1);
-    
-    // initializing the variable
-    plain= (char *) malloc(256);
-    if(plain==NULL){
-        printf("No Memory");
-        return EXIT_FAILURE;
-    }
-    int key=0; 
+int key; 
     // Argument Filtering. Now It accepts only positive integers
     if(argc<2)
     {
@@ -37,7 +16,7 @@ int main( int argc, char *argv[] )
       return EXIT_FAILURE;
       
     }
-    else
+    else if (argc ==2)
     {
         if (!isdigit(atoi(argv[1])))
         {
@@ -66,40 +45,3 @@ int main( int argc, char *argv[] )
             EXIT_FAILURE;
         }
     }
- 
-    printf("Ceasar! Caesar! I need the plaintex to cipher against the barbarian Germens!\n");
-    sleep(2);
-    printf("What is the top secret information you want to be encrypted?\n");
-    printf("\n");
-    printf("=>");
-    fgets(plain, MAX_NAME_SZ,stdin);
-    printf("I will cipher the following text %s\n",plain);
-        
- 
-    cpr(plain,key);
-
-    
-
-
-
-free(plain);
-return EXIT_SUCCESS;
-}
-
-int cpr(char *text, int num)
-{
-    char *output;
-    output = (char *) malloc(256);
-
-    strcpy(output,text);
-    for(size_t i=0; i<strlen(output); i++)
-    {
-        output[i]=output[i+num];
-    }
-
-    printf(" The Ciphered Text is the Following. Read it and burn the paper!\n");
-    sleep(2);
-    printf("%s\n",output);
-    free(output);
-    return EXIT_SUCCESS;
-}
