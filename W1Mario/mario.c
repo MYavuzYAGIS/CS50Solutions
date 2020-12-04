@@ -34,7 +34,7 @@ int main(void)
 
     printf("Initializing....\n");
     sleep(1);
-    printf("Drawing a twin pyramid with the given height of %d\n",number);
+    printf("Drawing a mario pyramid with the given height of %d\n",number);
     
     for(line=0;line<number;line++)
     {
