@@ -20,7 +20,7 @@ int main(void){
   }
   fgets(text, MAX_NAME_SZ,stdin);
   printf("%s\n",text);
-read(text);
+  read(text);
 
 
 
@@ -46,10 +46,31 @@ return EXIT_SUCCESS;
 double read(char *text){
     double L;
     double S;
-    int letter;
-    int sentence;
-    int word;
+    int letter=0;
+    int sentence=0;
+    int word=1;  // I started word count 1 because word count == spacecount +1
     double readability= 0.0588 * L - 0.296*S - 15.8;
+
+    if(strlen(text)<=1){
+        printf("Do not play smart, give me a real text to analyze");
+        return EXIT_FAILURE;
+    }else{
+
+
+    for(int i=0; i<strlen(text);i++){
+        if(text[i]==' '){
+            word = word +1;
+        }else if(text[i] == '.' || text[i] == '?' || text[i] == '!')   // denotes end of the sentence so sentence ++;
+        {
+            sentence ++;
+        }else{
+            letter++; // if not space and not sentence end, We assume it is a letter.
+        }
+        
+    }
+    }
+
+
 
 
 
