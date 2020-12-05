@@ -92,6 +92,11 @@ return EXIT_SUCCESS;
 }
 
 
+bool vote(char *name){
+    
+}
+
+
 int print_winner(void){
 
 }
