@@ -2,19 +2,15 @@
 #include<string.h>
 #include<stdlib.h>
 #include <unistd.h>
-int read(char *text);
 #define MAX_NAME_SZ 256
+double read(char *text);
+int main(void){
 
-
-int main(void)
-{
   char *text=NULL;  
-  printf("Please submit a text to grade the readability..");
-  sleep(2);
-
+  printf("Please submit a text to grade the readability..\n");
+  sleep(1);
   // memory allocation for the text variable.
   text = (char *)malloc(256);
-  
   // safety check on the memory allocation process.
   if (text == NULL)
   {
@@ -24,17 +20,37 @@ int main(void)
   }
   fgets(text, MAX_NAME_SZ,stdin);
   printf("%s\n",text);
-
-
 read(text);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 free(text);
 return EXIT_SUCCESS;
-
-
 }
 
 
-int read(char *text){
-    printf("%s\n",text);    
-    return EXIT_SUCCESS;
+double read(char *text){
+    double L;
+    double S;
+    int letter;
+    int sentence;
+    int word;
+    double readability= 0.0588 * L - 0.296*S - 15.8;
+
+
+
 }
