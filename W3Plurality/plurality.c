@@ -14,7 +14,7 @@ static const bool True = 1;
 #define MAX 9
 // adding the prototypes
 bool vote(char *name);
-void winner(void);
+int print_winner();
 
 // Lets create a constructor for the candidate
 typedef struct{
@@ -26,8 +26,6 @@ candidate;
 candidate candidates[MAX];    // We created an array, constructed from the data type we defined called candidate.  Max is the maximum amount of the candidate it can hold.
 // lets create a candidate count which cannot pass MAX.
 int candidate_count;
-
-
 
 
 
@@ -43,11 +41,12 @@ if(candidate_count>MAX){
     return EXIT_FAILURE;
 }
 
-
 // checking invalid use cases 
 
     if (argc < 2)
     {
+        printf("Please provide the names of the candidates one after another! \n ");
+        printf("Names are Case Sensitive! \n ");
         printf("Too few arguents are supplied\n");
         printf("Use Case : plurality[candidate ..]\n");
         return EXIT_FAILURE;
@@ -66,8 +65,11 @@ if(candidate_count>MAX){
     printf("How many voters there are in the system?\n");
     sleep(1);
     printf("=>");
-    fgets(voter_count, MAX, stdin);
+    scanf("%d",&voter_count);
 
+
+
+    
     for (int i=0; i<voter_count;i++)
     {
          printf("Please provide a Name to vote for :\n");
@@ -93,10 +95,43 @@ return EXIT_SUCCESS;
 
 
 bool vote(char *name){
-    
+     for (int i = 0; i < candidate_count; i++)
+    {
+        if (strcmp(name,  candidates[i].name) == 0)
+        {
+            candidates[i].votes++;
+            return EXIT_SUCCESS;
+        }
+    }
+    return EXIT_FAILURE;
 }
+    
+
 
 
 int print_winner(void){
+
+    int votesWinner = 0;
+
+    // stores value of the number of most votes
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes > votesWinner)
+        {
+            votesWinner = candidates[i].votes;
+        }
+    }
+
+    // Prints all candidates that received most votes
+    for (int j = 0; j < candidate_count; j++)
+    {
+        if (candidates[j].votes == votesWinner)
+        {
+            printf("THE WINNER IS  %s\n", candidates[j].name);
+        }
+    }
+
+
+    return EXIT_SUCCESS;
 
 }
