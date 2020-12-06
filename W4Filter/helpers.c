@@ -97,20 +97,10 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 
  }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Blur image
+
+// tough Part :D
  void blur(int height, int width, RGBTRIPLE image[height][width])
  {
-     return;
+     // Could not handle, Skipping!
  }

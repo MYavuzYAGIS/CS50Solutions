@@ -26,3 +26,20 @@
 
 ## 4) Plurality - A basic Voting system
 ![mario](img/plur.png)
+<br> </br>
+## 5) Filtering
+<br> </br>
+
+#### Original Picture
+![mario](W4Filter/images/stadium.bmp)
+
+#### a) filter- Greyscale
+<br> </br>
+![mario](img/filter1.bmp)
+<br> </br>
+#### b) filter- Sepia
+![mario](img/filter2.bmp)
+
+<br> </br>
+#### c) filter- Reverse
+![mario](img/filter3.bmp)
