@@ -119,6 +119,7 @@ int print_winner(void){
         if (candidates[i].votes > votesWinner)
         {
             votesWinner = candidates[i].votes;
+            
         }
     }
 
@@ -127,7 +128,7 @@ int print_winner(void){
     {
         if (candidates[j].votes == votesWinner)
         {
-            printf("THE WINNER IS  %s\n", candidates[j].name);
+            printf("%s\n", candidates[j].name);
         }
     }
 
