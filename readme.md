@@ -22,3 +22,7 @@
 ## Another Screensot for Readability.
 <br> </br>
 ![mario](img/read.png)
+
+
+## 4) Plurality - A basic Voting system
+![mario](img/plur.png)
