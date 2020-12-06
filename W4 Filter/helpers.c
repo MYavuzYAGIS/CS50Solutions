@@ -6,11 +6,11 @@
 // We have to make sure that the RGB does not overflow!
 
 
-int NoFlow(int RGB){
-    if(RGB> 255){
-        RGB=255;
+int NoFlow(int rounded){
+    if(rounded> 255){
+        rounded=255;
     }
-    return RGB;
+    return rounded;
 }
 
 // Convert image to grayscale
@@ -57,8 +57,57 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
  void reflect(int height, int width, RGBTRIPLE image[height][width])
  {
-     return;
+     //here task is to keep height in its order but convert each element wihthin the height into reverse.
+     // if there is odd amount of elememts, then middle should stay stable
+     // else, all of them should switch places.
+
+     // took some help from here :https://www.techiedelight.com/reverse-array-c/
+
+  int tmp[3];
+    
+    for (int i =0; i<height;i++){
+        for(int j=0; j<width/2;j++) // we are not interested with the one in the middle.
+        {   
+
+            tmp[0] = image[i][j].rgbtBlue;
+            tmp[1] = image[i][j].rgbtGreen;
+            tmp[2] = image[i][j].rgbtRed;
+
+
+            // now instead of swapping the pixels themselves, we can simply copy the corresponding pixel
+
+            image[i][j].rgbtBlue = image[i][width-j-1].rgbtBlue;
+            image[i][j].rgbtGreen = image[i][width-j-1].rgbtGreen;
+            image[i][j].rgbtRed = image[i][width-j-1].rgbtRed;
+
+            // Soo the pixel colors are swapped. Now it is time to rebuild the image
+
+            image[i][width-j-1].rgbtBlue = tmp[0];
+            image[i][width-j-1].rgbtGreen = tmp[1];
+            image[i][width-j-1].rgbtRed = tmp[2];
+
+
+        }
+    }    
+
+
+
+
+
+
  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Blur image
  void blur(int height, int width, RGBTRIPLE image[height][width])
