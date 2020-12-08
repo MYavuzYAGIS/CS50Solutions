@@ -57,6 +57,8 @@ while(fread(buff, 512, 1 ,forensic)){
         printf("name for the image %s is being created automatically\n",name);
         image = fopen(name,"w");  // open the image with the name in the write mode
         printf("opening image %s\n",name);
+        printf("writing info into the image %s\n",name);
+        printf("image %s is created succesfully\n",name);
 
 
         // but what if image is empty? i.e. could not allocate memory?
