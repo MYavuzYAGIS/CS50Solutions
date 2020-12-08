@@ -54,7 +54,9 @@ while(fread(buff, 512, 1 ,forensic)){
         // now we have some buffs to write but this file is not opened and does not have a name
 
         sprintf(name, "%03d.jpg", counter);  // name will be contigous,
+        printf("name for the image %s is being created automatically\n",name);
         image = fopen(name,"w");  // open the image with the name in the write mode
+        printf("opening image %s\n",name);
 
 
         // but what if image is empty? i.e. could not allocate memory?
@@ -73,6 +75,7 @@ while(fread(buff, 512, 1 ,forensic)){
     // so we have found an image, created another empty image and counter is 1. we need to write it.
 
     if(counter>0){
+        
         fwrite(buff, 512,1,image);
     }
 
