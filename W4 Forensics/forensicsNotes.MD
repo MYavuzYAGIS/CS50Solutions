@@ -1,8 +1,3 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include <unistd.h>
-
 
 // how to open a file ? 
 // FILE* ptr = fopen("name.ext","mode- r or a or w");   writing will overwrite all the file and delete all the files whereas append will just append.
