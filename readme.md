@@ -52,3 +52,30 @@
 
 #### Original Picture
 ![mario](img/forensic.png)
+
+
+
+## FINALLY!!
+
+## 6) SPELLER
+
+<br> </br>
+
+When N=26 in Linked List Bucket size
+![mario](img/N26.png)
+
+
+When N = 2000000 in linked list bucket Size
+<br> </br>
+![mario](img/N2000000.png)
+
+
+
+
+
+
+
+
+
+
+
