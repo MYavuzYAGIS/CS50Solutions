@@ -43,3 +43,12 @@
 <br> </br>
 #### c) filter- Reverse
 ![mario](img/filter3.bmp)
+
+
+<br> </br>
+
+## 5) Recover Data from Forensic Image
+<br> </br>
+
+#### Original Picture
+![mario](img/forensic.png)
