@@ -79,15 +79,14 @@ bool load(const char *dictionary)
 
     // We opened the dictionary into read mode.
      FILE *dict = fopen(dictionary,"r");
-     char *word = malloc(LENGTH+1);   // creating a buffer for fscanf, for allocating space for each word read from dictionary
-
-     if(word == NULL){
+     
+     if(dict == NULL){
          printf("Could not load %s\n",dictionary);         
-         fclose(dict);
          return EXIT_FAILURE;
      }
-
-     while(fscanf(dict, "%s", word)!=EOF) // reading each word from the file until it is the EndOfFile!.
+        char word[LENGTH+1];
+     while(fscanf(dict, "%s", word)!=EOF) 
+     // reading each word from the file until it is the EndOfFile!.
      {         
          node *n = malloc(sizeof(node));    // allocating enough memory for the next node, since it is a loop.
          // checking wehether malloc returns null
@@ -98,13 +97,12 @@ bool load(const char *dictionary)
          }
          // copyting the word into the allocated buffer memory
          strcpy(n->word, word);   // copyting the word itself into n->word. strcopy first argument is the destionation the second one is source. its like = .
-         wordsfound+=1;
+        
          n->next= table[hash(word)];
          table[hash(word)]=n;
-
+        wordsfound+=1;
      }
     // takes a file to open if loaded, return 0 else return false.
-    free(word);
     fclose(dict);
     return EXIT_SUCCESS;
 }
