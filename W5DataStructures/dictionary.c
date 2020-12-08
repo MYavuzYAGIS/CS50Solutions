@@ -16,15 +16,11 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 26;   // since it is a dictionary, in order the reduce O(n), we have to create 26 buckets to fit words into.
-
-
+const unsigned int N = 2000000;   // since it is a dictionary, in order the reduce O(n), we have to create 26 buckets to fit words into.
 // Hash table
-node *table[N];
-int wordsfound=0;
+unsigned int wordsfound=0;
 unsigned int hash_value;
-
-
+node *table[N];
 
 
 
@@ -74,42 +70,44 @@ unsigned int hash(const char *word)
 
 
 // Loads dictionary into memory, returning true if successful, else false
+// Loads dict into memory, returning true if successful else false
 bool load(const char *dictionary)
-{   
-
-    // We opened the dictionary into read mode.
-     FILE *dict = fopen(dictionary,"r");
-     
-     if(dict == NULL){
-         printf("Could not load %s\n",dictionary);         
-         return EXIT_FAILURE;
-     }
-        char word[LENGTH+1];
-     while(fscanf(dict, "%s", word)!=EOF) 
-     // reading each word from the file until it is the EndOfFile!.
-     {         
-         node *n = malloc(sizeof(node));    // allocating enough memory for the next node, since it is a loop.
-         // checking wehether malloc returns null
-         if(n==NULL){
-             printf("could not initialize enough memory space for this action\n");
-             free(n);
-             return EXIT_FAILURE;
-         }
-         // copyting the word into the allocated buffer memory
-         strcpy(n->word, word);   // copyting the word itself into n->word. strcopy first argument is the destionation the second one is source. its like = .
-        
-         n->next= table[hash(word)];
-         table[hash(word)]=n;
-        wordsfound+=1;
-     }
-    // takes a file to open if loaded, return 0 else return false.
+{
+    // Open dict 
+    FILE *dict = fopen(dictionary, "r");
+// If file is not opened, return false
+    if (dict == NULL)
+    {
+        return false;
+    }
+    // storage space for word
+    char word[LENGTH + 1];
+// Scan dict for strings that are not the end of the file
+    while (fscanf(dict, "%s", word) != EOF)
+    {
+        // Allocate memory for new node
+        node *n = malloc(sizeof(node));
+// If malloc returns NULL, return false
+        if (n == NULL)
+        {
+            return false;
+        }
+// Pointer to next node and word itself
+        strcpy(n->word, word);
+        // Hash the word to get hash value
+        hash_value = hash(word);
+        // Set new pointer
+        n->next = table[hash_value];
+        // Set head to new pointer
+        table[hash_value] = n;
+        // Increment word count
+        wordsfound++;
+    }
+// Close file
     fclose(dict);
-    return EXIT_SUCCESS;
+// If dict is loaded, return true
+    return true;
 }
-// we iterated through all the words in the dictionary, loaded them into memory into the hash table, now we are ready to process the spell-check
-
-
-
 
 
 
